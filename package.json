@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index",
     "test": "node --test",
-    "dev": "nodemon src/index.js",
+    "dev": "DB_FILE=db.sqlite nodemon src/index.js",
     "seed": "cross-env DB_FILE='db.sqlite' node src/database/seed.js"
   },
   "volta": {
