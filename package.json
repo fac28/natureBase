@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index",
     "test": "node --test",
     "dev": "nodemon src/index.js",
     "seed": "cross-env DB_FILE='db.sqlite' node database/seed.js"
+  },
+  "volta": {
+    "node": "18.16.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.10",
     "cross-env": "^7.0.3",
     "eslint": "^8.50.0",
     "nodemon": "^3.0.1",
