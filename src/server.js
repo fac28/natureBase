@@ -12,20 +12,9 @@ const addPost = require("./model/addPost");
 //Middleware
 app.use(staticHandler);
 
-const newPost = {
-  username: "nich",
-  content: "aaaa",
-  picture: "a/file/path",
-  location: "london",
-  likes: 5,
-};
-
 //Routes
 app.get("/", (req, res) => {
-  res.send(Layout());
-  addPost(newPost);
-  console.log(getPosts());
-  
+  res.send(Layout());  
 });
 
 module.exports = app;
