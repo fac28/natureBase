@@ -2,10 +2,12 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS posts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
+    username TEXT,
     content TEXT,
     picture TEXT,
     location TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    
-)
+    likes INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP  
+);
+
+COMMIT;
