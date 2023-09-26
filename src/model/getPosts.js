@@ -11,7 +11,7 @@ const getPosts = () => {
 
   try {
     return db.prepare(select_posts).all();
-  } catch {
+  } catch (error) {
     console.error("Error fetching posts:", error.message);
     throw error;
   }
