@@ -1,4 +1,4 @@
-function home({ content }) {
+function home(content) {
   return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
@@ -29,6 +29,7 @@ function home({ content }) {
 </header>
 <main>
 ${content}
+
 </main>
   </body>
   </html>

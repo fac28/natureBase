@@ -1,1 +1,6 @@
 /* Add styles here */
+img {
+  width: 100vw;
+  height: 100vw;
+  object-fit: cover; /* Optional: specifies how the image should be resized to fit the dimensions */
+}
