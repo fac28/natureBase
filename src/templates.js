@@ -1,4 +1,4 @@
-function Layout() {
+function home({ content }) {
   return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
@@ -10,11 +10,29 @@ function Layout() {
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Hello all!</h1>
+  <header>
+  <h1>natureBase</h1>
+  <h2>london's picture book</h2>
+    <nav>
+      <form action="/add" method="POST">
+          <button class="add" type="submit">
+            <img src="public/images/plus.svg" alt="Add Icon">
+          </button>
+      </form>
+      
+      <form action="/" method="POST">
+          <button class="search" type="submit">
+            <img src="public/images/search.svg" alt="Search Icon">
+          </button>
+      </form>
+  </nav>
+</header>
+<main>
+${content}
+</main>
   </body>
   </html>
   `;
 }
 
-
-module.exports = Layout;
+module.exports = { home };
