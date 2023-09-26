@@ -1,3 +1,4 @@
+
 const db = require("../database/db");
 
 const getPosts = () => {
@@ -17,3 +18,4 @@ const getPosts = () => {
 };
 
 module.exports = getPosts;
+

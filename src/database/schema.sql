@@ -5,8 +5,10 @@ CREATE TABLE IF NOT EXISTS posts (
     username TEXT,
     content TEXT,
     picture TEXT,
-    post_location TEXT,
-    likes INTEGER,
+
+    location TEXT,
+    likes INTEGER DEFAULT 0,
+
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP  
 );
 
