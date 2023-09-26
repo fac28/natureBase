@@ -1,1 +1,6 @@
-//Set up server
+const express = require("express");
+
+const server = express();
+
+
+
