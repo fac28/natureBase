@@ -4,9 +4,12 @@ const express = require("express");
 const router = express.Router();
 const templates = require("../templates");
 const addPost = require("../model/addPost.js");
+const getPosts = require("../model/getPosts.js");
 
 router.get("/", (req, res) => {
-  const submissionPage = templates.submissionForm() + templates.home();
+  const submissionPage =
+    templates.submissionForm() +
+    templates.home(templates.displayPosts(getPosts()));
   res.send(submissionPage);
 });
 
