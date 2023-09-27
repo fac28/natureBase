@@ -26,11 +26,17 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
     if (!post.content) {
       errors.content = "Please enter a description";
     }
+    if (!post.location) {
+      errors.location = "Please enter a location"
+    }
+    if (!post.picture) {
+      errors.picture = "Please enter a picture"
+    }
 
   // if there are errors:
   if (Object.keys(errors).length) {
-      const body = form(errors, req.body);
-      res.status(400).send(body);
+      const body = templates.submissionForm(errors, req.body);
+      res.status(400).send(body + templates.home());
   } else {
       addPost(post)
       res.redirect("/..");

@@ -64,7 +64,12 @@ function submissionForm(errors = {}, values = {}) {
 
       <br>
       <label for="picture">Picture URL:</label>
-        <input type="text" id="picture" name="picture" required>
+        <input 
+          type="text" 
+          id="picture" 
+          name="picture"
+          value="${values.picture ? sanitize(values.picture) : ""}">
+          ${validation(errors.picture)}
       <br>
 
       <label for="content">Description:</label>
