@@ -22,8 +22,11 @@ app.use("/like", likeRoutes);
 app.use("/delete", deleteRoutes);
 
 //Routes
+
 app.get("/", (req, res) => {
-  const html = templates.home();
+  // console.log(getPosts());
+  content = templates.displayPosts(getPosts());
+  const html = templates.home(content);
 
   res.send(html);
 });
