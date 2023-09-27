@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 const staticHandler = express.static("public");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
-const getPosts = require("./model/getPosts.js");
+const deleteRoutes = require("./routes/delete");
 const searchRoutes = require("./routes/search.js");
 const addRoutes = require("./routes/add.js");
-const likeRoutes = require('./routes/like.js');
+const likeRoutes = require("./routes/like.js");
 
 //const model = require("./model/getPost");
+const getPosts = require("./model/getPosts.js");
 const home = require("./templates");
 const templates = require("./templates");
 
@@ -18,10 +19,10 @@ app.use(staticHandler);
 app.use("/search", searchRoutes);
 app.use("/add", addRoutes);
 app.use("/like", likeRoutes);
+app.use("/delete", deleteRoutes);
 
 //Routes
 app.get("/", (req, res) => {
-
   const html = templates.home();
 
   res.send(html);

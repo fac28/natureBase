@@ -53,13 +53,15 @@ function displayPosts() {
     .map(
       (post) => /*html*/ `<img class="photo" src="${post.picture}"> 
       <div class="details">
-      <p class="content">${post.content}</p>
-    
+      <div class="flex">
+        <p class="content">${post.content}</p>
+      
         <p class="info">
           <span class="location">${post.location}</span>
           <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
         </p>
-
+      </div>
+      <div class="flex">
         <form action="/like" method="POST">
           <input type="hidden" name="item_id" value="${post.id}">
           <button class="icon" type="submit">
@@ -67,10 +69,12 @@ function displayPosts() {
             <img src="images/leaf.svg" alt="Like Icon">
           </button>
         </form>
-        
+        <form action="/delete" method="POST">
+          <input type="hidden" name="item_id" value="${post.id}">
+          <button class="icon delete" type="submit">Delete</button>
+        </form>
       </div>
-
-      
+      </div>
       `
     )
     .reverse()
