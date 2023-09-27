@@ -5,14 +5,11 @@ const router = express.Router();
 const templates = require("../templates");
 
 router.get("/", (req, res) => {
-  res.send(templates.home());
+  const submissionPage = templates.submissionForm() + templates.home();
+  res.send(submissionPage);
 });
 
-router.post("/", express.urlencoded(), (req, res) => {
-  const { username, content, picture, location } = req.body;
-  const newPost = { username, content, picture, location };
 
-  res.redirect("/");
-});
+
 
 module.exports = router;

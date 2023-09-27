@@ -1,4 +1,4 @@
-const getPosts = require("./model/getPosts.js")
+const getPosts = require("./model/getPosts.js");
 
 function home() {
   return /*html*/ `
@@ -16,7 +16,7 @@ function home() {
   <h1>natureBase</h1>
   <h2>london's picture book</h2>
     <nav>
-      <form action="/add" method="POST">
+      <form action="/add" method="GET">
           <button class="add" type="submit">
             <img src="images/plus.svg" alt="Add Icon">
           </button>
@@ -31,7 +31,6 @@ function home() {
 </header>
 <main>
 ${displayPosts()}
-
 </main>
   </body>
   </html>
@@ -39,19 +38,37 @@ ${displayPosts()}
 }
 
 function displayPosts() {
- return getPosts()
-  .map(
-    (post) =>
-      `<img src="${post.picture}"> 
+  return getPosts()
+    .map(
+      (post) =>
+        `<img src="${post.picture}"> 
       <p>${post.content}</p>
       <p>${post.username} </p>
       <p>${post.created_at}</p>
       <p>Location: ${post.location}</p>
       <p>Likes: ${post.likes}</p>
       `
-  )
-  .reverse()
-  .join("");
-
+    )
+    .reverse()
+    .join("");
 }
-module.exports = { home };
+
+function submissionForm() {
+  return /*html*/ `
+  <form action="/add" method="POST">
+      <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+      <br>
+      <label for="picture">Picture URL:</label>
+        <input type="text" id="picture" name="picture" required>
+      <br>
+
+      <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+      <br>
+        <button type="submit">Submit</button>
+    </form>
+  `;
+}
+module.exports = { home , submissionForm};
