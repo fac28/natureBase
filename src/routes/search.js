@@ -26,7 +26,9 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
   } else {
     console.log("testing");
     console.log(searchPosts(query));
-    res.redirect("/..");
+
+    content = templates.searchedPosts(searchPosts(query));
+    res.send(templates.home(content));
 
     // searchPosts(query); ???
   }
