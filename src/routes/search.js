@@ -24,8 +24,10 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
     const body = templates.searchForm(errors, req.body);
     res.status(400).send(body + templates.home());
   } else {
-    console.log("testing");
-    console.log(searchPosts(query));
+    // console.log(query);
+    // console.log(typeof query);
+    // console.log(searchPosts(query));
+    // console.log(isNaN(query));
 
     content = templates.searchedPosts(searchPosts(query));
     res.send(templates.home(content));
