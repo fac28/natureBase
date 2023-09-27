@@ -21,6 +21,7 @@ app.use("/like", likeRoutes);
 
 //Routes
 app.get("/", (req, res) => {
+
   const html = templates.home();
 
   res.send(html);

@@ -1,4 +1,5 @@
 const getPosts = require("./model/getPosts.js");
+const sanitizeHtml = require('sanitize-html')
 
 function home() {
   return /*html*/ `
@@ -77,47 +78,52 @@ function displayPosts() {
 }
 
 function submissionForm(errors = {}, values = {}) {
+  // Sanitize user input
+  const sanitizedUsername = sanitizeServerSide(values.username);
+  const sanitizedPicture = sanitizeServerSide(values.picture);
+  const sanitizedContent = sanitizeServerSide(values.content);
+  const sanitizedLocation = sanitizeServerSide(values.location);
+
   return /*html*/ `
   <form action="/add" method="POST">
       <label for="username">Username:</label>
-        <input 
-          id="username"
-          name="username"
-          value="${values.username ? sanitize(values.username) : ""}">
-
+      <input 
+        id="username"
+        name="username"
+        value="${sanitizedUsername ? sanitizedUsername : ''}">
       <br>
       <label for="picture">Picture URL:</label>
-        <input 
-          type="text" 
-          id="picture" 
-          name="picture"
-          value="${values.picture ? sanitize(values.picture) : ""}">
-          ${validation(errors.picture)}
+      <input 
+        type="text" 
+        id="picture" 
+        name="picture"
+        value="${sanitizedPicture ? sanitizedPicture : ''}">
+      ${validation(errors.picture)}
       <br>
-
       <label for="content">Description:</label>
       <textarea
         id="content"
-        name="content">${
-          values.content ? sanitize(values.content) : ""
-        }</textarea>
-        ${validation(errors.content)}
-      <br>
 
+        name="content">${sanitizedContent ? sanitizedContent : ''}</textarea>
+      ${validation(errors.content)}
+      <br>
       <label for="location">Location:</label>
       <textarea
         id="location"
-        name="location">${
-          values.location ? sanitize(values.location) : ""
-        }</textarea>
-        ${validation(errors.location)}
-        <button type="submit">Submit</button>
+        name="location">${sanitizedLocation ? sanitizedLocation : ''}</textarea>
+      ${validation(errors.location)}
+      <button type="submit">Submit</button>
     </form>
   `;
 }
 
-function sanitize(unsafe) {
-  return unsafe.replace(/</g, "&lt;");
+
+function sanitizeServerSide(unsafe) {
+  const clean = sanitizeHtml(unsafe, {
+    allowedTags: [], // Allow no HTML tags
+    allowedAttributes: {} // Allow no attributes
+  });
+  return clean;
 }
 
 function validation(message) {
