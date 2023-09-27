@@ -49,10 +49,9 @@ ${content}
   `;
 }
 
-function displayPosts(posts) {
-  return posts
+function displayPosts() {
+  return getPosts()
     .map(
-
       (post) => /*html*/ `<div class="posts">
       <img class="photo" src="${post.picture}"> 
       <div class="details">
@@ -65,9 +64,7 @@ function displayPosts(posts) {
         <p>Likes: ${post.likes}</p>
         
       </div>
-      </div>
-
-      
+      </div>      
       `
     )
     .reverse()
@@ -202,5 +199,6 @@ module.exports = {
   submissionForm,
   searchForm,
   displayPosts,
+  form
 };
 
