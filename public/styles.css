@@ -7,7 +7,7 @@ body {
 .photo {
   width: 100vw;
   height: 100vw;
-  object-fit: cover; /* Optional: specifies how the image should be resized to fit the dimensions */
+  object-fit: cover; 
 }
 
 .icon {
@@ -111,4 +111,49 @@ body {
 
 .content {
   margin-left: 5px;
+}
+
+.add-form {
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.add-form textarea,
+.add-form input {
+  height: 25px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/* Media query for screens above 500px width */
+@media screen and (min-width: 501px) {
+  main {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .photo {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .details {
+    width: 50vw;
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

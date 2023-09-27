@@ -51,7 +51,8 @@ ${displayPosts()}
 function displayPosts() {
   return getPosts()
     .map(
-      (post) => /*html*/ `<img class="photo" src="${post.picture}"> 
+      (post) => /*html*/ `<div class="posts">
+      <img class="photo" src="${post.picture}"> 
       <div class="details">
       <p class="content">${post.content}</p>
     
@@ -61,6 +62,7 @@ function displayPosts() {
         </p>
         <p>Likes: ${post.likes}</p>
         
+      </div>
       </div>
 
       
@@ -78,7 +80,8 @@ function submissionForm(errors = {}, values = {}) {
   const sanitizedLocation = sanitizeServerSide(values.location);
 
   return /*html*/ `
-  <form action="/add" method="POST">
+  
+  <form class="centre add-form" action="/add" method="POST">
       <label for="username">Username:</label>
       <input 
         id="username"
@@ -107,6 +110,55 @@ function submissionForm(errors = {}, values = {}) {
       ${validation(errors.location)}
       <button type="submit">Submit</button>
     </form>
+    
+  `;
+}
+
+function form() {
+  return /*html*/ `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>natureBase</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <header class="header">
+  <div class="header-content">
+  <div class="centre">
+  <div class="title-container">
+  <h1 class="title">natureBase</h1>
+  <h2 class="slogan">london's picture book</h2>
+  </div>
+  </div>
+    <nav>
+
+      <form action="/add" method="GET">
+          <button class="icon add" type="submit">
+           <img src="images/plus.svg" alt="Add Icon">
+          </button>
+      </form>
+      
+      <form action="/" method="POST">
+          <button class="icon search" type="submit">
+            <img src="images/search.svg" alt="Search Icon">
+          </button>
+      </form>
+  </nav>
+  </div>
+</header>
+${submissionForm((errors = {}), (values = {}))}
+<main>
+${displayPosts()}
+</main>
+  </body>
+  </html>
   `;
 }
 
@@ -126,4 +178,4 @@ function validation(message) {
     return "";
   }
 }
-module.exports = { home, submissionForm };
+module.exports = { home, submissionForm, form };
