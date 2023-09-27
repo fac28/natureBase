@@ -90,6 +90,14 @@ body {
   background-color: rgba(128, 128, 128, 0.16);
 }
 
+.flex {
+  display: flex;
+  flex: wrap;
+  justify-content: center;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+}
+
 .info {
   font-weight: 200;
   display: flex;
@@ -111,6 +119,14 @@ body {
 
 .content {
   margin-left: 5px;
+}
+
+.delete {
+  border: 1px solid grey;
+  padding: .25rem;
+  border-radius: 5px;
+  background: grey;
+  color: rgb(217, 216, 216);
 }
 
 .add-form {

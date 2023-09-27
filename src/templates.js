@@ -36,7 +36,7 @@ function home() {
         <button class="icon search" type="submit">
           <img src="images/search.svg" alt="Search Icon">
         </button>
-    </form>
+      </form>
   </nav>
   </div>
 </header>
@@ -102,25 +102,30 @@ function displayPosts() {
       (post) => /*html*/ `
       
       <div class="posts">
-            <img class="photo" src="${post.picture}"> 
-            <div class="details">
+        <img class="photo" src="${post.picture}"> 
+        <div class="details">
+          <div class="flex">
             <p class="content">${post.content}</p>
-          
-              <p class="info">
-                <span class="location">${post.location}</span>
-                <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
-              </p>
-              <form action="/like" method="POST">
-          <input type="hidden" name="item_id" value="${post.id}">
-          <button class="icon" type="submit">
+            <p class="info">
+            <span class="location">${post.location}</span>
+            <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
+            </p>
+        </div>
+        <div class="flex">
+          <form action="/like" method="POST">
+            <input type="hidden" name="item_id" value="${post.id}">
+            <button class="icon" type="submit">
             ${post.likes}
-            <img src="images/leaf.svg" alt="Like Icon">
-          </button>
-        </form>
-              
-            </div>
-            </div>
-    `
+              <img src="images/leaf.svg" alt="Like Icon">
+            </button>
+          </form>
+          <form action="/delete" method="POST">
+            <input type="hidden" name="item_id" value="${post.id}">
+            <button class="icon delete" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      `
     )
     .reverse()
     .join("");
