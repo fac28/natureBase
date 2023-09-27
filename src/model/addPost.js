@@ -2,8 +2,8 @@ const db = require("../database/db");
 
 const addPost = (post) => {
   const insert_post = /*sql*/ `
-  INSERT INTO posts (username, content, picture, location, likes)
-  VALUES (?, ?, ?, ?, ?);
+  INSERT INTO posts (username, content, picture, location)
+  VALUES (?, ?, ?, ?);
   `;
   try {
     return db
@@ -13,7 +13,6 @@ const addPost = (post) => {
         post.content,
         post.picture,
         post.location,
-        post.likes
       );
   } catch (error) {
     console.error("Error creating posts:", error.message);
