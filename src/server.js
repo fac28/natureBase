@@ -17,7 +17,7 @@ app.use("/add", addRoutes);
 
 //Routes
 app.get("/", (req, res) => {
-  console.log(getPosts());
+
   const html = templates.home();
 
   res.send(html);
