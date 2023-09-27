@@ -24,6 +24,11 @@ jobs:
 
       - name: Run tests
         run: npm test
+        
+      - name: Set up Flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+        with:
+          api-token: ${{ secrets.FLY_API_TOKEN }}
 
       - name: Deploy to Fly.io
         run: flyctl deploy --remote-only
