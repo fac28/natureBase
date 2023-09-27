@@ -11,6 +11,11 @@ git clone https://github.com/cazanelena/https://github.com/fac28/natureBase.git
 cd https://github.com/fac28/natureBase.git
 npm install
 ```
+Then, seed the server:
+
+```bash
+npm run seed
+```
 
 Then, start the server:
 
