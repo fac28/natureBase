@@ -4,10 +4,10 @@ const express = require("express");
 const router = express.Router();
 const templates = require("../templates");
 const searchPosts = require("../model/searchPosts.js");
+const getPosts = require("../model/getPosts.js");
 
 router.get("/", (req, res) => {
-  const searchPage = templates.searchForm() + templates.home();
-  res.send(searchPage);
+  res.send(templates.searchForm());
 });
 
 router.post("/", express.urlencoded({ extended: false }), (req, res) => {
@@ -24,7 +24,7 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
     const body = templates.searchForm(errors, req.body);
     res.status(400).send(body + templates.home());
   } else {
-    content = templates.searchedPosts(searchPosts(query));
+    content = templates.displayPosts(searchPosts(query));
     res.send(templates.home(content));
   }
 });

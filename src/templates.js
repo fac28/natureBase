@@ -37,23 +37,7 @@ ${content}
   `;
 }
 
-function displayPosts() {
-  return getPosts()
-    .map(
-      (post) =>
-        `<img src="${post.picture}"> 
-      <p>${post.content}</p>
-      <p>${post.username} </p>
-      <p>${post.created_at}</p>
-      <p>Location: ${post.location}</p>
-      <p>Likes: ${post.likes}</p>
-      `
-    )
-    .reverse()
-    .join("");
-}
-
-function searchedPosts(posts) {
+function displayPosts(posts) {
   return posts
     .map(
       (post) => `<img src="${post.picture}"> 
@@ -138,5 +122,4 @@ module.exports = {
   submissionForm,
   searchForm,
   displayPosts,
-  searchedPosts,
 };
