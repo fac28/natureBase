@@ -16,13 +16,13 @@ function home(content) {
     <nav>
       <form action="/add" method="POST">
           <button class="add" type="submit">
-            <img src="public/images/plus.svg" alt="Add Icon">
+            <img src="images/plus.svg" alt="Add Icon">
           </button>
       </form>
       
       <form action="/" method="POST">
           <button class="search" type="submit">
-            <img src="public/images/search.svg" alt="Search Icon">
+            <img src="images/search.svg" alt="Search Icon">
           </button>
       </form>
   </nav>
