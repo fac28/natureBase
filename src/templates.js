@@ -1,7 +1,7 @@
 const getPosts = require("./model/getPosts.js");
 const sanitizeHtml = require('sanitize-html')
 
-function home() {
+function home(content) {
   return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
@@ -32,8 +32,9 @@ function home() {
           </button>
       </form>
       
-      <form action="/" method="POST">
-          <button class="icon search" type="submit">
+      <form action="/search" method="GET">
+          <button class="search" type="submit">
+
             <img src="images/search.svg" alt="Search Icon">
           </button>
       </form>
@@ -41,16 +42,17 @@ function home() {
   </div>
 </header>
 <main>
-${displayPosts()}
+${content}
 </main>
   </body>
   </html>
   `;
 }
 
-function displayPosts() {
-  return getPosts()
+function displayPosts(posts) {
+  return posts
     .map(
+
       (post) => /*html*/ `<div class="posts">
       <img class="photo" src="${post.picture}"> 
       <div class="details">
@@ -100,12 +102,14 @@ function submissionForm(errors = {}, values = {}) {
       <textarea
         id="content"
 
+
         name="content">${sanitizedContent ? sanitizedContent : ''}</textarea>
       ${validation(errors.content)}
       <br>
       <label for="location">Location:</label>
       <textarea
         id="location"
+
         name="location">${sanitizedLocation ? sanitizedLocation : ''}</textarea>
       ${validation(errors.location)}
       <button type="submit">Submit</button>
@@ -162,6 +166,21 @@ ${displayPosts()}
   `;
 }
 
+function searchForm(errors = {}, values = {}) {
+  return /*html*/ `
+  <form action="/search" method="POST">
+  <label for="query">Search:</label>
+  <input 
+    id="query"
+    name="query"
+    value="${values.query ? sanitize(values.query) : ""}">
+    ${validation(errors.query)}
+    <button type="submit">Submit</button>
+  </form>
+  `;
+}
+
+
 
 function sanitizeServerSide(unsafe) {
   const clean = sanitizeHtml(unsafe, {
@@ -178,4 +197,10 @@ function validation(message) {
     return "";
   }
 }
-module.exports = { home, submissionForm, form };
+module.exports = {
+  home,
+  submissionForm,
+  searchForm,
+  displayPosts,
+};
+

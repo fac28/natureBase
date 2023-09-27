@@ -5,15 +5,17 @@ const router = express.Router();
 const templates = require("../templates");
 const addPost = require("../model/addPost.js");
 
+const getPosts = require("../model/getPosts.js");
+
 router.get("/", (req, res) => {
-  const submissionPage = templates.form();
+  const submissionPage =
+    templates.submissionForm() +
+    templates.home(templates.displayPosts(getPosts()));
+
   res.send(submissionPage);
 });
 
 router.post("/", express.urlencoded({ extended: false }), (req, res) => {
-  // const username = req.body.username || "Anonymous";
-  // const content = req.body.content;
-  // const image = req.body.picture;
 
   const post = {
     username: req.body.username || "Anonymous",
@@ -36,7 +38,9 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
   // if there are errors:
   if (Object.keys(errors).length) {
     const body = templates.submissionForm(errors, req.body);
+
     res.status(400).send(templates.home() + body);
+
   } else {
     addPost(post);
     res.redirect("/..");

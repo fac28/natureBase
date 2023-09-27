@@ -17,11 +17,11 @@ app.use("/add", addRoutes);
 
 //Routes
 app.get("/", (req, res) => {
-  console.log(getPosts());
-  const html = templates.home();
+  // console.log(getPosts());
+  content = templates.displayPosts(getPosts());
+  const html = templates.home(content);
 
   res.send(html);
 });
-
 
 module.exports = app;
