@@ -22,7 +22,7 @@ function home() {
           </button>
       </form>
       
-      <form action="/" method="POST">
+      <form action="/search" method="GET">
           <button class="search" type="submit">
             <img src="images/search.svg" alt="Search Icon">
           </button>
@@ -76,7 +76,7 @@ function submissionForm(errors = {}, values = {}) {
       <textarea
         id="content"
         name="content">${
-        values.content ? sanitize(values.content) : ""
+          values.content ? sanitize(values.content) : ""
         }</textarea>
         ${validation(errors.content)}
       <br>
@@ -85,11 +85,25 @@ function submissionForm(errors = {}, values = {}) {
       <textarea
         id="location"
         name="location">${
-        values.location ? sanitize(values.location) : ""
+          values.location ? sanitize(values.location) : ""
         }</textarea>
         ${validation(errors.location)}
         <button type="submit">Submit</button>
     </form>
+  `;
+}
+
+function searchForm(errors = {}, values = {}) {
+  return /*html*/ `
+  <form action="/search" method="POST">
+  <label for="query">Search:</label>
+  <input 
+    id="query"
+    name="query"
+    value="${values.query ? sanitize(values.query) : ""}">
+    ${validation(errors.query)}
+    <button type="submit">Submit</button>
+  </form>
   `;
 }
 
@@ -99,9 +113,9 @@ function sanitize(unsafe) {
 
 function validation(message) {
   if (message) {
-      return /*html*/ `<span style="color: red">${message}</span>`;
+    return /*html*/ `<span style="color: red">${message}</span>`;
   } else {
-      return "";
+    return "";
   }
 }
-module.exports = { home , submissionForm};
+module.exports = { home, submissionForm, searchForm };
