@@ -1,4 +1,6 @@
-function home(content) {
+const getPosts = require("./model/getPosts.js")
+
+function home() {
   return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
@@ -28,7 +30,7 @@ function home(content) {
   </nav>
 </header>
 <main>
-${content}
+${displayPosts()}
 
 </main>
   </body>
@@ -36,4 +38,20 @@ ${content}
   `;
 }
 
+function displayPosts() {
+ return getPosts()
+  .map(
+    (post) =>
+      `<img src="${post.picture}"> 
+      <p>${post.content}</p>
+      <p>${post.username} </p>
+      <p>${post.created_at}</p>
+      <p>Location: ${post.location}</p>
+      <p>Likes: ${post.likes}</p>
+      `
+  )
+  .reverse()
+  .join("");
+
+}
 module.exports = { home };
