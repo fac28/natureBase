@@ -17,21 +17,8 @@ app.use("/add", addRoutes);
 
 //Routes
 app.get("/", (req, res) => {
-  content = getPosts()
-    .map(
-      (post) =>
-        `<img src="${post.picture}"> 
-        <p>${post.content}</p>
-        <p>${post.username} </p>
-        <p>${post.created_at}</p>
-        <p>Location: ${post.location}</p>
-        <p>Likes: ${post.likes}</p>
-        `
-    )
-    .join("");
-
   console.log(getPosts());
-  const html = templates.home(content);
+  const html = templates.home();
 
   res.send(html);
 });
