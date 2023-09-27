@@ -6,9 +6,11 @@ natureBase is a web application that allows users to submit and view pictures of
 
 To run the application, clone the repository and install the dependencies:
 
-```
-git clone https://github.com/cazanelena/https://github.com/fac28/natureBase.git
-cd https://github.com/fac28/natureBase.git
+```bash
+git clone https://github.com/fac28/natureBase.git
+
+cd natureBase
+
 npm install
 ```
 Then, seed the server:
