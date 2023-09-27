@@ -7,9 +7,8 @@ const addPost = require("../model/addPost.js");
 const getPosts = require("../model/getPosts.js");
 
 router.get("/", (req, res) => {
-  const submissionPage =
-    templates.submissionForm() +
-    templates.home(templates.displayPosts(getPosts()));
+  const submissionPage = templates.submissionForm();
+  // + templates.home(templates.displayPosts(getPosts()));
   res.send(submissionPage);
 });
 
@@ -35,7 +34,7 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
   // if there are errors:
   if (Object.keys(errors).length) {
     const body = templates.submissionForm(errors, req.body);
-    res.status(400).send(body + templates.home());
+    res.status(400).send(body);
   } else {
     addPost(post);
     res.redirect("/..");
