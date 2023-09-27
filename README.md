@@ -1,6 +1,6 @@
 # natureBase readMe
 
-natureBase is a web application that allows users to submit and view pictures of nature taken around London. It is built using Node.js, SQLite, and the Express framework.
+natureBase is a web application that allows users to submit and view pictures of nature taken around London. It is built using Node.js, SQLite, and the Express framework. It is deployed here [here](https://nature-base.fly.dev/) through fly.
 
 ## Installation Instructions
 
