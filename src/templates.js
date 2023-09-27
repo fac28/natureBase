@@ -134,35 +134,37 @@ function submissionForm(errors = {}, values = {}) {
   const sanitizedLocation = sanitizeServerSide(values.location);
 
   return /*html*/ `
-  <form action="/add" method="POST">
+  
+  <form class="centre add-form" action="/add" method="POST">
       <label for="username">Username:</label>
       <input 
         id="username"
         name="username"
-        value="${sanitizedUsername ? sanitizedUsername : ""}">
+        value="${sanitizedUsername ? sanitizedUsername : ''}">
       <br>
       <label for="picture">Picture URL:</label>
       <input 
         type="text" 
         id="picture" 
         name="picture"
-        value="${sanitizedPicture ? sanitizedPicture : ""}">
+        value="${sanitizedPicture ? sanitizedPicture : ''}">
       ${validation(errors.picture)}
       <br>
       <label for="content">Description:</label>
       <textarea
         id="content"
 
-        name="content">${sanitizedContent ? sanitizedContent : ""}</textarea>
+        name="content">${sanitizedContent ? sanitizedContent : ''}</textarea>
       ${validation(errors.content)}
       <br>
       <label for="location">Location:</label>
       <textarea
         id="location"
-        name="location">${sanitizedLocation ? sanitizedLocation : ""}</textarea>
+        name="location">${sanitizedLocation ? sanitizedLocation : ''}</textarea>
       ${validation(errors.location)}
       <button type="submit">Submit</button>
     </form>
+    
   `;
 }
 
