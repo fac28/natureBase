@@ -7,3 +7,5 @@ const seed = readFileSync(seedPath, "utf-8");
 db.exec(seed);
 
 console.log("DB seeded with example data");
+
+module.exports = seed;
