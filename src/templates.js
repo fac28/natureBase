@@ -53,22 +53,50 @@ function displayPosts() {
     .join("");
 }
 
-function submissionForm() {
+function submissionForm(errors = {}, values = {}) {
   return /*html*/ `
   <form action="/add" method="POST">
       <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input 
+          id="username"
+          name="username"
+          value="${values.username ? sanitize(values.username) : ""}">
 
       <br>
       <label for="picture">Picture URL:</label>
         <input type="text" id="picture" name="picture" required>
       <br>
 
-      <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
+      <label for="content">Description:</label>
+      <textarea
+        id="content"
+        name="content">${
+        values.content ? sanitize(values.content) : ""
+        }</textarea>
+        ${validation(errors.content)}
       <br>
+
+      <label for="location">Location:</label>
+      <textarea
+        id="location"
+        name="location">${
+        values.location ? sanitize(values.location) : ""
+        }</textarea>
+        ${validation(errors.location)}
         <button type="submit">Submit</button>
     </form>
   `;
+}
+
+function sanitize(unsafe) {
+  return unsafe.replace(/</g, "&lt;");
+}
+
+function validation(message) {
+  if (message) {
+      return /*html*/ `<span style="color: red">${message}</span>`;
+  } else {
+      return "";
+  }
 }
 module.exports = { home , submissionForm};
