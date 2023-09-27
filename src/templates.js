@@ -1,7 +1,7 @@
 const getPosts = require("./model/getPosts.js");
 const sanitizeHtml = require("sanitize-html");
 
-function home() {
+function home(content) {
   return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
@@ -32,7 +32,7 @@ function home() {
           </button>
       </form>
       
-      <form action="/" method="POST">
+      <form action="/search" method="GET">
         <button class="icon search" type="submit">
           <img src="images/search.svg" alt="Search Icon">
         </button>
@@ -41,7 +41,7 @@ function home() {
   </div>
 </header>
 <main>
-${displayPosts()}
+${content}
 </main>
   </body>
   </html>
@@ -79,7 +79,7 @@ function form() {
           </button>
       </form>
       
-      <form action="/" method="POST">
+      <form action="/search" method="GET">
           <button class="icon search" type="submit">
             <img src="images/search.svg" alt="Search Icon">
           </button>
@@ -89,15 +89,61 @@ function form() {
 </header>
 ${submissionForm((errors = {}), (values = {}))}
 <main>
-${displayPosts()}
 </main>
   </body>
   </html>
   `;
 }
 
-function displayPosts() {
-  return getPosts()
+function searchPage(content) {
+  return /*html*/ `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>natureBase</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <header class="header">
+  <div class="header-content">
+  <div class="centre">
+  <div class="title-container">
+  <h1 class="title">natureBase</h1>
+  <h2 class="slogan">london's picture book</h2>
+  </div>
+  </div>
+    <nav>
+
+      <form action="/add" method="GET">
+          <button class="icon add" type="submit">
+           <img src="images/plus.svg" alt="Add Icon">
+          </button>
+      </form>
+      
+      <form action="/search" method="GET">
+          <button class="icon search" type="submit">
+            <img src="images/search.svg" alt="Search Icon">
+          </button>
+      </form>
+  </nav>
+  </div>
+</header>
+${searchForm((errors = {}), (values = {}))}
+<main>
+</main>
+  </body>
+  </html>
+  `;
+}
+
+function displayPosts(posts) {
+  return posts
     .map(
       (post) => /*html*/ `
       
@@ -145,31 +191,45 @@ function submissionForm(errors = {}, values = {}) {
       <input 
         id="username"
         name="username"
-        value="${sanitizedUsername ? sanitizedUsername : ''}">
+        value="${sanitizedUsername ? sanitizedUsername : ""}">
       <br>
       <label for="picture">Picture URL:</label>
       <input 
         type="text" 
         id="picture" 
         name="picture"
-        value="${sanitizedPicture ? sanitizedPicture : ''}">
+        value="${sanitizedPicture ? sanitizedPicture : ""}">
       ${validation(errors.picture)}
       <br>
       <label for="content">Description:</label>
       <textarea
         id="content"
 
-        name="content">${sanitizedContent ? sanitizedContent : ''}</textarea>
+        name="content">${sanitizedContent ? sanitizedContent : ""}</textarea>
       ${validation(errors.content)}
       <br>
       <label for="location">Location:</label>
       <textarea
         id="location"
-        name="location">${sanitizedLocation ? sanitizedLocation : ''}</textarea>
+        name="location">${sanitizedLocation ? sanitizedLocation : ""}</textarea>
       ${validation(errors.location)}
       <button type="submit">Submit</button>
     </form>
     
+  `;
+}
+
+function searchForm(errors = {}, values = {}) {
+  return /*html*/ `
+  <form action="/search" method="POST">
+  <label for="query">Search:</label>
+  <input 
+    id="query"
+    name="query"
+    value="${values.query ? sanitize(values.query) : ""}">
+    ${validation(errors.query)}
+    <button type="submit">Submit</button>
+  </form>
   `;
 }
 
@@ -188,4 +248,4 @@ function validation(message) {
     return "";
   }
 }
-module.exports = { home, submissionForm, form };
+module.exports = { home, submissionForm, form, displayPosts, searchPage };
