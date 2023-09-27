@@ -1,5 +1,5 @@
 const getPosts = require("./model/getPosts.js");
-const sanitizeHtml = require('sanitize-html')
+const sanitizeHtml = require("sanitize-html");
 
 function home() {
   return /*html*/ `
@@ -99,27 +99,28 @@ ${displayPosts()}
 function displayPosts() {
   return getPosts()
     .map(
-      (post) => /*html*/ `<img class="photo" src="${post.picture}"> 
-      <div class="details">
-      <p class="content">${post.content}</p>
-    
-        <p class="info">
-          <span class="location">${post.location}</span>
-          <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
-        </p>
-
-        <form action="/like" method="POST">
+      (post) => /*html*/ `
+      
+      <div class="posts">
+            <img class="photo" src="${post.picture}"> 
+            <div class="details">
+            <p class="content">${post.content}</p>
+          
+              <p class="info">
+                <span class="location">${post.location}</span>
+                <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
+              </p>
+              <form action="/like" method="POST">
           <input type="hidden" name="item_id" value="${post.id}">
           <button class="icon" type="submit">
             ${post.likes}
             <img src="images/leaf.svg" alt="Like Icon">
           </button>
         </form>
-        
-      </div>
-
-      
-      `
+              
+            </div>
+            </div>
+    `
     )
     .reverse()
     .join("");
@@ -138,38 +139,37 @@ function submissionForm(errors = {}, values = {}) {
       <input 
         id="username"
         name="username"
-        value="${sanitizedUsername ? sanitizedUsername : ''}">
+        value="${sanitizedUsername ? sanitizedUsername : ""}">
       <br>
       <label for="picture">Picture URL:</label>
       <input 
         type="text" 
         id="picture" 
         name="picture"
-        value="${sanitizedPicture ? sanitizedPicture : ''}">
+        value="${sanitizedPicture ? sanitizedPicture : ""}">
       ${validation(errors.picture)}
       <br>
       <label for="content">Description:</label>
       <textarea
         id="content"
 
-        name="content">${sanitizedContent ? sanitizedContent : ''}</textarea>
+        name="content">${sanitizedContent ? sanitizedContent : ""}</textarea>
       ${validation(errors.content)}
       <br>
       <label for="location">Location:</label>
       <textarea
         id="location"
-        name="location">${sanitizedLocation ? sanitizedLocation : ''}</textarea>
+        name="location">${sanitizedLocation ? sanitizedLocation : ""}</textarea>
       ${validation(errors.location)}
       <button type="submit">Submit</button>
     </form>
   `;
 }
 
-
 function sanitizeServerSide(unsafe) {
   const clean = sanitizeHtml(unsafe, {
     allowedTags: [], // Allow no HTML tags
-    allowedAttributes: {} // Allow no attributes
+    allowedAttributes: {}, // Allow no attributes
   });
   return clean;
 }
