@@ -22,7 +22,7 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
   // if there are errors:
   if (Object.keys(errors).length) {
     const body = templates.searchForm(errors, req.body);
-    res.status(400).send(body + templates.home());
+    res.status(400).send(body);
   } else {
     content = templates.displayPosts(searchPosts(query));
     res.send(templates.home(content));
