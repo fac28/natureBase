@@ -26,7 +26,7 @@ function home() {
     <nav>
 
       <form action="/add" method="GET">
-          <button class="add" type="submit">
+          <button class="icon add" type="submit">
            <img src="images/plus.svg" alt="Add Icon">
           </button>
       </form>
@@ -50,7 +50,6 @@ ${displayPosts()}
 function displayPosts() {
   return getPosts()
     .map(
-
       (post) => /*html*/ `<img class="photo" src="${post.picture}"> 
       <div class="details">
       <p class="content">${post.content}</p>
@@ -68,7 +67,6 @@ function displayPosts() {
     )
     .reverse()
     .join("");
-      
 }
 
 function submissionForm(errors = {}, values = {}) {
@@ -94,7 +92,7 @@ function submissionForm(errors = {}, values = {}) {
       <textarea
         id="content"
         name="content">${
-        values.content ? sanitize(values.content) : ""
+          values.content ? sanitize(values.content) : ""
         }</textarea>
         ${validation(errors.content)}
       <br>
@@ -103,7 +101,7 @@ function submissionForm(errors = {}, values = {}) {
       <textarea
         id="location"
         name="location">${
-        values.location ? sanitize(values.location) : ""
+          values.location ? sanitize(values.location) : ""
         }</textarea>
         ${validation(errors.location)}
         <button type="submit">Submit</button>
@@ -117,10 +115,9 @@ function sanitize(unsafe) {
 
 function validation(message) {
   if (message) {
-      return /*html*/ `<span style="color: red">${message}</span>`;
+    return /*html*/ `<span style="color: red">${message}</span>`;
   } else {
-      return "";
+    return "";
   }
-
 }
-module.exports = { home , submissionForm};
+module.exports = { home, submissionForm };
