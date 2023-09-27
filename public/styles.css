@@ -7,7 +7,7 @@ body {
 .photo {
   width: 100vw;
   height: 100vw;
-  object-fit: cover; /* Optional: specifies how the image should be resized to fit the dimensions */
+  object-fit: cover; 
 }
 
 .icon {
@@ -40,12 +40,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Place the background behind other content */
+  z-index: -1; 
 }
 
 .header-content {
   position: relative; /* Ensure content is positioned correctly */
-  z-index: 1; /* Place the content above the background */
+  z-index: 1;
 }
 
 .centre {
@@ -127,4 +127,49 @@ body {
   border-radius: 5px;
   background: grey;
   color: rgb(217, 216, 216);
+}
+
+.add-form {
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.add-form textarea,
+.add-form input {
+  height: 25px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/* Media query for screens above 500px width */
+@media screen and (min-width: 501px) {
+  main {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .photo {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .details {
+    width: 50vw;
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
