@@ -33,10 +33,10 @@ function home() {
       </form>
       
       <form action="/" method="POST">
-          <button class="icon search" type="submit">
-            <img src="images/search.svg" alt="Search Icon">
-          </button>
-      </form>
+        <button class="icon search" type="submit">
+          <img src="images/search.svg" alt="Search Icon">
+        </button>
+    </form>
   </nav>
   </div>
 </header>
@@ -59,7 +59,14 @@ function displayPosts() {
           <span class="location">${post.location}</span>
           <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
         </p>
-        <p>Likes: ${post.likes}</p>
+
+        <form action="/like" method="POST">
+          <input type="hidden" name="item_id" value="${post.id}">
+          <button class="icon" type="submit">
+            ${post.likes}
+            <img src="images/leaf.svg" alt="Like Icon">
+          </button>
+        </form>
         
       </div>
 
