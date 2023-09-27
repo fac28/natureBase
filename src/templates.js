@@ -80,13 +80,14 @@ function form() {
       </form>
       
       <form action="/" method="POST">
-        <button class="icon search" type="submit">
-          <img src="images/search.svg" alt="Search Icon">
-        </button>
-    </form>
+          <button class="icon search" type="submit">
+            <img src="images/search.svg" alt="Search Icon">
+          </button>
+      </form>
   </nav>
   </div>
 </header>
+${submissionForm((errors = {}), (values = {}))}
 <main>
 ${displayPosts()}
 </main>
