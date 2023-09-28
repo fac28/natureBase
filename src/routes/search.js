@@ -24,7 +24,7 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
     const body = templates.searchPage(errors, req.body);
     res.status(400).send(body);
   } else {
-    content = templates.displayPosts(searchPosts(query));
+    const content = templates.displayPosts(searchPosts(query));
     res.send(templates.home(content));
   }
 });

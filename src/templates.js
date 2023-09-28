@@ -33,7 +33,7 @@ function home(content) {
       </form>
       
 
-      <form action="/" method="GET">
+      <form action="/search" method="GET">
         <button class="form__button-icon search" type="submit">
           <img src="images/search.svg" alt="Search Icon">
         </button>

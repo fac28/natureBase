@@ -7,6 +7,7 @@ const deleteRoutes = require("./routes/delete");
 const searchRoutes = require("./routes/search.js");
 const addRoutes = require("./routes/add.js");
 const likeRoutes = require("./routes/like.js");
+const getPosts = require("./model/getPosts.js");
 
 //const model = require("./model/getPost");
 
