@@ -87,7 +87,7 @@ function form() {
   </nav>
   </div>
 </header>
-${submissionForm((errors = {}), (values = {}))}
+${submissionForm()}
 <main>
 ${displayPosts()}
 </main>
