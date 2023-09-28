@@ -1,4 +1,3 @@
-
 const sanitizeHtml = require('sanitize-html')
 
 function home(content) {
@@ -159,7 +158,9 @@ function displayPosts(posts) {
             <p class="content">${post.content}</p>
             <p class="info">
             <span class="location">${post.location}</span>
-            <span class="right">- ${post.username} <span class="date">${post.created_at}</span></span>
+            <span class="right">- ${
+                post.username
+            } <span class="date">${formatDate(post.created_at)}</span></span>
             </p>
         </div>
         <div class="flex">
@@ -253,4 +254,39 @@ function validation(message) {
         return ''
     }
 }
+
+function formatDate(dateString) {
+    // Check if the input string is already in the desired format
+    const regex = /^[A-Za-z]{3} \d{1,2}(st|nd|rd|th), \d{4}$/
+    if (regex.test(dateString)) {
+        return dateString // Return the input string as is
+    }
+
+    const date = new Date(dateString)
+    const month = date.toLocaleString('default', { month: 'short' })
+    const day = date.getDate()
+    const year = date.getFullYear()
+
+    // Function to add ordinal suffix to day (e.g., 1st, 2nd, 3rd, 4th, etc.)
+    const addOrdinalSuffix = (day) => {
+        if (day >= 11 && day <= 13) {
+            return day + 'th'
+        } else {
+            switch (day % 10) {
+                case 1:
+                    return day + 'st'
+                case 2:
+                    return day + 'nd'
+                case 3:
+                    return day + 'rd'
+                default:
+                    return day + 'th'
+            }
+        }
+    }
+
+    const formattedDate = `${month} ${addOrdinalSuffix(day)}, ${year}`
+    return formattedDate
+}
+
 module.exports = { home, submissionForm, form, displayPosts, searchPage }
