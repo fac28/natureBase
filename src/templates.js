@@ -27,13 +27,14 @@ function home(content) {
     <nav>
 
       <form action="/add" method="GET">
-          <button class="icon add" type="submit">
+          <button class="form__button-icon add" type="submit">
            <img src="images/plus.svg" alt="Add Icon">
           </button>
       </form>
       
-      <form action="/search" method="GET">
-        <button class="icon search" type="submit">
+
+      <form action="/" method="GET">
+        <button class="form__button-icon search" type="submit">
           <img src="images/search.svg" alt="Search Icon">
         </button>
       </form>
@@ -74,20 +75,22 @@ function form() {
     <nav>
 
       <form action="/add" method="GET">
-          <button class="icon add" type="submit">
+          <button class="form__button-icon add" type="submit">
            <img src="images/plus.svg" alt="Add Icon">
           </button>
       </form>
       
-      <form action="/search" method="GET">
-          <button class="icon search" type="submit">
+
+      <form action="/" method="GET">
+          <button class="form__button-icon search" type="submit">
+
             <img src="images/search.svg" alt="Search Icon">
           </button>
       </form>
   </nav>
   </div>
 </header>
-${submissionForm((errors = {}), (values = {}))}
+${submissionForm()}
 <main>
 </main>
   </body>
@@ -160,14 +163,14 @@ function displayPosts(posts) {
         <div class="flex">
           <form action="/like" method="POST">
             <input type="hidden" name="item_id" value="${post.id}">
-            <button class="icon" type="submit">
+            <button class="form__button-icon" type="submit">
             ${post.likes}
               <img src="images/leaf.svg" alt="Like Icon">
             </button>
           </form>
           <form action="/delete" method="POST">
             <input type="hidden" name="item_id" value="${post.id}">
-            <button class="icon delete" type="submit">Delete</button>
+            <button class="form__button-icon delete" type="submit">Delete</button>
           </form>
         </div>
       </div>

@@ -9,8 +9,8 @@ const addRoutes = require("./routes/add.js");
 const likeRoutes = require("./routes/like.js");
 
 //const model = require("./model/getPost");
-const getPosts = require("./model/getPosts.js");
-const home = require("./templates");
+
+
 const templates = require("./templates");
 
 //Middleware
