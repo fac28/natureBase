@@ -21,7 +21,7 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
 
   // if there are errors:
   if (Object.keys(errors).length) {
-    const body = templates.searchForm(errors, req.body);
+    const body = templates.searchPage(errors, req.body);
     res.status(400).send(body);
   } else {
     content = templates.displayPosts(searchPosts(query));

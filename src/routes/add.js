@@ -35,7 +35,7 @@ router.post("/", express.urlencoded({ extended: false }), (req, res) => {
 
   // if there are errors:
   if (Object.keys(errors).length) {
-    const body = templates.submissionForm(errors, req.body);
+    const body = templates.form(errors, req.body);
     res.status(400).send(body);
   } else {
     addPost(post);
