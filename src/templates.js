@@ -124,13 +124,13 @@ function searchPage(content) {
     <nav>
 
       <form action="/add" method="GET">
-          <button class="icon add" type="submit">
+          <button class="form__button-icon add" type="submit">
            <img src="images/plus.svg" alt="Add Icon">
           </button>
       </form>
       
       <form action="/search" method="GET">
-          <button class="icon search" type="submit">
+          <button class="form__button-icon search" type="submit">
             <img src="images/search.svg" alt="Search Icon">
           </button>
       </form>
