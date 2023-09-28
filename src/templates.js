@@ -1,8 +1,8 @@
-const getPosts = require("./model/getPosts.js");
-const sanitizeHtml = require("sanitize-html");
+
+const sanitizeHtml = require('sanitize-html')
 
 function home(content) {
-  return /*html*/ `
+    return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -46,11 +46,11 @@ ${content}
 </main>
   </body>
   </html>
-  `;
+  `
 }
 
-function form() {
-  return /*html*/ `
+function form(posts) {
+    return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -91,15 +91,17 @@ function form() {
   </div>
 </header>
 ${submissionForm()}
+
 <main>
+${displayPosts(posts)}
 </main>
   </body>
   </html>
-  `;
+  `
 }
 
-function searchPage(content) {
-  return /*html*/ `
+function searchPage() {
+    return /*html*/ `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -137,18 +139,18 @@ function searchPage(content) {
   </nav>
   </div>
 </header>
-${searchForm((errors = {}), (values = {}))}
+${searchForm()}
 <main>
 </main>
   </body>
   </html>
-  `;
+  `
 }
 
 function displayPosts(posts) {
-  return posts
-    .map(
-      (post) => /*html*/ `
+    return posts
+        .map(
+            (post) => /*html*/ `
       
       <div class="posts">
         <img class="photo" src="${post.picture}"> 
@@ -175,80 +177,80 @@ function displayPosts(posts) {
         </div>
       </div>
       `
-    )
-    .reverse()
-    .join("");
+        )
+        .reverse()
+        .join('')
 }
 
 function submissionForm(errors = {}, values = {}) {
-  // Sanitize user input
-  const sanitizedUsername = sanitizeServerSide(values.username);
-  const sanitizedPicture = sanitizeServerSide(values.picture);
-  const sanitizedContent = sanitizeServerSide(values.content);
-  const sanitizedLocation = sanitizeServerSide(values.location);
+    // Sanitize user input
+    const sanitizedUsername = sanitizeServerSide(values.username)
+    const sanitizedPicture = sanitizeServerSide(values.picture)
+    const sanitizedContent = sanitizeServerSide(values.content)
+    const sanitizedLocation = sanitizeServerSide(values.location)
 
-  return /*html*/ `
+    return /*html*/ `
   
   <form class="centre add-form" action="/add" method="POST">
       <label for="username">Username:</label>
       <input 
         id="username"
         name="username"
-        value="${sanitizedUsername ? sanitizedUsername : ""}">
+        value="${sanitizedUsername ? sanitizedUsername : ''}">
       <br>
       <label for="picture">Picture URL:</label>
       <input 
         type="text" 
         id="picture" 
         name="picture"
-        value="${sanitizedPicture ? sanitizedPicture : ""}">
+        value="${sanitizedPicture ? sanitizedPicture : ''}">
       ${validation(errors.picture)}
       <br>
       <label for="content">Description:</label>
       <textarea
         id="content"
 
-        name="content">${sanitizedContent ? sanitizedContent : ""}</textarea>
+        name="content">${sanitizedContent ? sanitizedContent : ''}</textarea>
       ${validation(errors.content)}
       <br>
       <label for="location">Location:</label>
       <textarea
         id="location"
-        name="location">${sanitizedLocation ? sanitizedLocation : ""}</textarea>
+        name="location">${sanitizedLocation ? sanitizedLocation : ''}</textarea>
       ${validation(errors.location)}
       <button type="submit">Submit</button>
     </form>
     
-  `;
+  `
 }
 
 function searchForm(errors = {}, values = {}) {
-  return /*html*/ `
+    return /*html*/ `
   <form action="/search" method="POST">
   <label for="query">Search:</label>
   <input 
     id="query"
     name="query"
-    value="${values.query ? sanitize(values.query) : ""}">
+    value="${values.query ? sanitizeServerSide(values.query) : ''}">
     ${validation(errors.query)}
     <button type="submit">Submit</button>
   </form>
-  `;
+  `
 }
 
 function sanitizeServerSide(unsafe) {
-  const clean = sanitizeHtml(unsafe, {
-    allowedTags: [], // Allow no HTML tags
-    allowedAttributes: {}, // Allow no attributes
-  });
-  return clean;
+    const clean = sanitizeHtml(unsafe, {
+        allowedTags: [], // Allow no HTML tags
+        allowedAttributes: {}, // Allow no attributes
+    })
+    return clean
 }
 
 function validation(message) {
-  if (message) {
-    return /*html*/ `<span style="color: red">${message}</span>`;
-  } else {
-    return "";
-  }
+    if (message) {
+        return /*html*/ `<span style="color: red">${message}</span>`
+    } else {
+        return ''
+    }
 }
-module.exports = { home, submissionForm, form, displayPosts, searchPage };
+module.exports = { home, submissionForm, form, displayPosts, searchPage }

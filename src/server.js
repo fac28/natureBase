@@ -26,7 +26,7 @@ app.use("/delete", deleteRoutes);
 
 app.get("/", (req, res) => {
   // console.log(getPosts());
-  content = templates.displayPosts(getPosts());
+  const content = templates.displayPosts(getPosts());
   const html = templates.home(content);
 
   res.send(html);

@@ -4,9 +4,10 @@ const express = require("express");
 const router = express.Router();
 const templates = require("../templates");
 const searchPosts = require("../model/searchPosts.js");
-const getPosts = require("../model/getPosts.js");
+
 
 router.get("/", (req, res) => {
+ 
   res.send(templates.searchPage());
 });
 

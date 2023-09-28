@@ -4,10 +4,12 @@ const express = require('express')
 const router = express.Router()
 const templates = require('../templates')
 const addPost = require('../model/addPost.js')
+const getPosts = require('../model/getPosts.js')
 
 router.get('/', (req, res) => {
     try {
-        const submissionPage = templates.form()
+        const posts = getPosts()
+        const submissionPage = templates.form(posts)
         res.send(submissionPage)
     } catch (error) {
         console.error('Error with route:', error.message)
