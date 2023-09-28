@@ -4,7 +4,7 @@ const searchPost = (search) => {
   let query;
   let queryParams;
 
-  if (Number.isInteger(search)) {
+  if (!isNaN(search)) {
     //Handle interger search
     query = /*sql*/ `
       SELECT * 

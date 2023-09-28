@@ -7,6 +7,7 @@ const deleteRoutes = require("./routes/delete");
 const searchRoutes = require("./routes/search.js");
 const addRoutes = require("./routes/add.js");
 const likeRoutes = require("./routes/like.js");
+const getPosts = require("./model/getPosts.js");
 
 //const model = require("./model/getPost");
 
@@ -22,8 +23,11 @@ app.use("/like", likeRoutes);
 app.use("/delete", deleteRoutes);
 
 //Routes
+
 app.get("/", (req, res) => {
-  const html = templates.home();
+  // console.log(getPosts());
+  content = templates.displayPosts(getPosts());
+  const html = templates.home(content);
 
   res.send(html);
 });
