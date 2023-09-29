@@ -21,7 +21,7 @@ npm run seed
 
 Then, start the server:
 
-```
+```bash
 npm run dev
 ```
 
@@ -39,6 +39,10 @@ The SQL database can be seeded with some data buy running "npm run seed".
 
 To run test scripts:
 
-```
+```bash
 npm run test
 ```
+
+### Credits
+
+The project was created by <a href="https://github.com/sgroi-l">Laurie Sgroi</a>, <a href="https://github.com/cazanelena">Elena Cazan</a>, <a href="https://github.com/nichgalzin">Nich Galzin</a> & <a href="https://github.com/GeorgeKlemperer">George Klemperer</a>.
